@@ -1,20 +1,24 @@
-// window.onscroll = function() {
-//     let desplaza = window.pageYOffset;
-//     if (ubicacion > desplaza) {
-//         document.getElementById("navbar").style.top = "0px"
-//         document.getElementById("navbar").style.transition = "0.5s";
-//     } else {
-//         document.getElementById('navbar').style.top = "-160px"
-//         document.getElementById("navbar").style.transition = "0.5s";
-//         // d
-//     }
-//     ubicacion = desplaza;
-//     // console.log(ubicacion)
-// };
+let ubicacion = window.pageYOffset;
+window.onscroll = function() {
+    let desplaza = window.pageYOffset;
+    if (ubicacion > desplaza) {
+        document.getElementById("navbar").style.top = "0px"
+        document.getElementById("navbar").style.transition = "0.5s";
+    } else {
+        document.getElementById('navbar').style.top = "-160px"
+        document.getElementById("navbar").style.transition = "0.5s";
+        // d
+    }
+    ubicacion = desplaza;
+    // console.log(ubicacion)
+};
+// console.log(ubicacion)
 (function() {
     // lista
     let tareaInput = document.getElementById('tareaInput');
-    // tareaInput  
+    // tareaInput
+    let container = document.getElementById('container') ;
+     // tareaInput
     let agregar = document.getElementById('agregar');
     // btnnuevatarea 
     let tareas = document.getElementById('tareas');
@@ -43,7 +47,8 @@
         // para limpiar el input
         tareaInput.value = "";
         for (let i = 0; i <= tareas.children.length - 1; i++) {
-            tareas.children[i].addEventListener('click', function() {
+            tareas.children[i].addEventListener('click', function(event) {
+                event.preventDefault()
                 if(this.parentNode){
           this.parentNode.removeChild(this);
          
@@ -58,15 +63,17 @@
         tareaInput.className = "";
         tareaInput.setAttribute("placeholder", "Agregar tu tarea")
     };
-    let eliminarTareas = function(eliminarTareas) {
+    let eliminarTareas = function(evento) {
        
-    eliminarTareas.preventDefault()
-         if(this.parentNode  ){
-          this.parentNode.removeChild(this);
-          // let elimina = 0;
+    evento.preventDefault()
+    this.parentNode.removeChild(this);
+         // if(this.parentNode  ){
+         //    // eliminarTareas.preventDefault()
+         //  this.parentNode.removeChild(this);
+           
 
          
-         }
+         // }
         
     };
     // eventos
@@ -79,6 +86,6 @@
     for (let i = 0; i <= tareas.children.length - 1; i++) {
        
         tareas.children[i].addEventListener('click', eliminarTareas)
-        // if()
+        
     }
 }());
